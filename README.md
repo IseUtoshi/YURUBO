@@ -43,7 +43,7 @@ https://docs.google.com/spreadsheets/d/1fPadBrGmfU6cizKgkI3PzrZDct7D1N6VVFTwmCFO
 ・カスタム機能(投稿内容の事前設定、通知可否、コメント可否)  
 ・ブロック機能
 
-## データーベース設計(最終的な実装イメージ)
+## データベース設計(最終的な実装イメージ)
 [![Image from Gyazo](https://i.gyazo.com/a23140b3bcce7465bdef97ee7e3823ce.png)](https://gyazo.com/a23140b3bcce7465bdef97ee7e3823ce)
 ## 画面遷移図
 [![Image from Gyazo](https://i.gyazo.com/313baf69e3a7ab25df1de3cedb23c5fe.png)](https://gyazo.com/313baf69e3a7ab25df1de3cedb23c5fe)
