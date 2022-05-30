@@ -9,9 +9,14 @@
               menu
             </button>
             <ul class="nav__wrapper">
-              <li class="nav__item"><a href="#">ゲスト さん</a></li>
+            <% if user_signed_in? %>
+              <li class="nav__item"><a href="#">ユーザー さん</a></li>
+              <li class="nav__item"><a href="#">ログアウト</a></li>
+            <% else %>
+              <li class="nav__item"><a>ゲスト さん</a></li>
               <li class="nav__item"><a href="/users/sign_in">ログイン</a></li>
               <li class="nav__item"><a href="/users/sign_up">新規登録</a></li>
+            <% end %>
             </ul>
           </nav>
           <div class="search">
