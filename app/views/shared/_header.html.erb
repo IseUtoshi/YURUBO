@@ -10,8 +10,8 @@
             </button>
             <ul class="nav__wrapper">
             <% if user_signed_in? %>
-              <li class="nav__item"><a href="#">ユーザー さん</a></li>
-              <li class="nav__item"><a href="#">ログアウト</a></li>
+              <li class="nav__item"><a href="#"><%= @user.name %> さん</a></li>
+              <li class="nav__item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li class="nav__item"><a>ゲスト さん</a></li>
               <li class="nav__item"><a href="/users/sign_in">ログイン</a></li>
