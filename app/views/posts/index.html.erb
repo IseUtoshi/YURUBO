@@ -1,4 +1,6 @@
 <%= render "shared/header" %>
+<h1>日付のリンクより詳細確認/投稿ができます</h1>
+<br>
 <%= calendar(number_of_days: 28) do |date| %>
   <%= link_to date.day, "#" %>
 <% end %>
