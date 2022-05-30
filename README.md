@@ -58,3 +58,6 @@ Ruby/Ruby on Rails/MySQL/Github/AWS/Visual Studio Code
 % yarn install
 
 ## 制作時の工夫点
+
+
+
