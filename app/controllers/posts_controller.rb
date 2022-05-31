@@ -4,5 +4,9 @@ class PostsController < ApplicationController
   end
   
   def show
+    @day = params[:id]
+  end
+
+  def new
   end
 end
