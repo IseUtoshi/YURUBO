@@ -1,2 +1,9 @@
 <%= render "shared/header" %>
-投稿ができます
+<% form_with model: @post, local: true do |f| %>
+<%= f.collection_select(:chat_id, Category.all, :id, :name, {}, {class:"select-box", id:"post-chat"}) %>
+<%= f.collection_select(:publish_id, Category.all, :id, :name, {}, {class:"select-box", id:"post-publish"}) %>
+<%= f.label :created_at, class: 'control-label' %>
+<%= f.time_select :created_at, class: 'form-control' %>
+
+<% end %>
+
