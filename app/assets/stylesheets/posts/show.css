@@ -63,10 +63,14 @@ td {
   height: 77px;
 }
 
+.post-btn-contents {
+  display: block;
+}
+
 .post-btn {
+  font-size: 30px;
   background: skyblue;
   border: 1px solid skyblue;
   color: #fff;
-  padding: 15px 35%;
-  text-decoration: none;
+  padding: 0 35%;
 }
