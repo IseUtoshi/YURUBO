@@ -24,3 +24,30 @@
 ### Association
 
 - belongs_to :user
+- has_many :post_games
+- has_many :games, through: :post_games
+
+## games テーブル
+
+| Column | Type       | Options                   |
+| ------ | ---------- | ------------------------- |
+| title  | string     | null: false               |
+| user   | references | null: false, unique: true |
+
+### Association
+
+- belongs_to :user
+- has_many :post_games
+- has_many :posts, through: :post_games
+
+## post_games テーブル
+
+| Column | Type       | Options                   |
+| ------ | ---------- | ------------------------- |
+| post   | references | null: false, unique: true |
+| game   | references | null: false, unique: true |
+
+### Association
+
+- belongs_to :post
+- belongs_to :game
