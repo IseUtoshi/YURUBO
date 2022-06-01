@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
 
   belongs_to :user
+  has_many :post_games
+  has_many :games, through: :post_games
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :chat
   belongs_to :publish
