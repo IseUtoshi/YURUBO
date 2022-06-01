@@ -1,0 +1,2 @@
+class PostGame < ApplicationRecord
+end
