@@ -1,2 +1,5 @@
 <%= render "shared/header" %>
-マイページ
+<%= form_with model: @game, local: true do |f| %>
+<%= f.text_field :title, class:"title-input", id:"title", placeholder:"ゲーム名を入力" %>
+<%= f.submit "登録" ,class:"registration" %>
+<% end %>
