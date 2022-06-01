@@ -1,5 +1,8 @@
 <%= render "shared/header" %>
 <%= form_with model: @post, local: true do |f| %>
+<div>
+<%= f.collection_check_boxes :game_ids, @games, :id, :title, {} %>
+</div>
 <%= f.collection_select(:chat_id, Chat.all, :id, :name, {}, {class:"select-box", id:"post-chat"}) %>
 <%= f.collection_select(:publish_id, Publish.all, :id, :name, {}, {class:"select-box", id:"post-publish"}) %>
 <%= f.label :start_time, class: 'control-label' %>
