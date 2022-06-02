@@ -15,7 +15,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @games = Game.where(user_id: "1").or(Game.where(user_id: current_user.id))
     if @post.save
       redirect_to root_path
     else
