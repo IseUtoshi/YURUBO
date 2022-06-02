@@ -4,11 +4,11 @@ class PostsController < ApplicationController
   end
   
   def show
-    @day = params[:id]
+    @date = params[:id]
   end
 
   def new
-    @day = params[:date]
+    @date = params[:date]
     @post = Post.new
     @games = Game.where(user_id: "1").or(Game.where(user_id: current_user.id))
   end
@@ -18,8 +18,8 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to root_path
     else
-      @day = "#{params[:post]["start_time(1i)"]}-#{params[:post]["start_time(2i)"]}-#{params[:post]["start_time(3i)"]}"
-      redirect_to new_post_path(date: @day)
+      @date = "#{params[:post]["start_time(1i)"]}-#{params[:post]["start_time(2i)"]}-#{params[:post]["start_time(3i)"]}"
+      redirect_to new_post_path(date: @date)
     end
   end
 

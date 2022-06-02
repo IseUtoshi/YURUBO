@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   validate :time_mismatch
 
   def time_mismatch
-    errors.add(:end_time, "終了時刻が開始時刻の前です") if end_time < start_time
+    errors.add(:end_time, "終了時刻が開始時刻の前か同じです") if end_time <= start_time
   end
 
 end
