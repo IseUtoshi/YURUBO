@@ -1,4 +1,7 @@
 <%= render "shared/header" %>
+<div>
+<%= "この日は#{@day}" %>
+<div>
 <%= form_with model: @post, local: true do |f| %>
 <div>
 <%= f.collection_check_boxes :game_ids, @games, :id, :title, {} %>
@@ -6,7 +9,7 @@
 <%= f.collection_select(:chat_id, Chat.all, :id, :name, {}, {class:"select-box", id:"post-chat"}) %>
 <%= f.collection_select(:publish_id, Publish.all, :id, :name, {}, {class:"select-box", id:"post-publish"}) %>
 <%= f.label :start_time, class: 'control-label' %>
-<%= f.time_select :start_time, {minute_step: 30}, class: 'form-control' %>
+<%= f.time_select :start_time, {default: Date.parse("#{@day}"), minute_step: 30}, class: 'form-control' %>
 <%= f.label :end_time, class: 'control-label' %>
 <%= f.time_select :end_time, {minute_step: 30}, class: 'form-control' %>
 <%= f.submit "登録", class:"registration-btn" %>
