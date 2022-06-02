@@ -111,4 +111,6 @@
     <!-- /.tableBox --></div>
   <!-- /.col2of4 --></div>
 <!-- /.timeTable --></div>
+<% if user_signed_in? %>
 <div class="post-btn-contents"><%=link_to '予定を投稿する', new_post_path(date: @date), class:"post-btn" %></div>
+<% end %>

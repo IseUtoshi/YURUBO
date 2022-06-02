@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
+
   def create
     @game = Game.new(game_params)
     if @game.save
