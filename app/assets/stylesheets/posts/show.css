@@ -69,9 +69,13 @@ td {
 }
 
 .post-btn {
+  width: 100px;
+  float: left;
+  zoom: 1;
   font-size: 30px;
   background: skyblue;
   border: 1px solid skyblue;
   color: #fff;
-  padding: 0 35%;
+  margin-top: 40px;
+  padding: 25px 0;
 }
