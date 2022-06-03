@@ -1,8 +1,15 @@
 <%= render "shared/header" %>
 <h1>日付のリンクより詳細確認/投稿ができます</h1>
 <br>
-<%= calendar(number_of_days: 28) do |date| %>
+<%= calendar(number_of_days: 28, events: @posts) do |date, posts| %>
   <%= link_to date.day, post_path(date) %>
+  <div>
+  <% posts.each do |post| %>
+    <% if "#{post.start_time}".slice(/\d{4}-\d{2}-\d{2}/) == "#{date}" %>
+      <%= link_to post.user.name, user_path(post.user.id) %>
+    <% end %>
+  <% end %>
+  </div>
 <% end %>
 <h1>"YURUBO"のつかいかた</h1>
 <p>
