@@ -1,6 +1,6 @@
 <%= render "shared/header" %>
 
-<% time = Time.local(2000,1,1,0,00,00) %>
+<% time = Time.parse(@date) %>
 
 <div class="timeTable">
   <div class="col2of4">
@@ -11,7 +11,17 @@
         <% 24.times do %>
           <tr>
             <th class="just borderNone"><%= time.strftime("%H:%M") %></th>
-            <td></td>
+            <td>
+              <% @posts.each do |post| %>
+                <% if time.strftime("%Y-%m-%d %X UTC") == "#{post.start_time}" %>
+                  <%= link_to post.user.name, user_path(post.user.id) %>開始！
+                  <% post.games.each do |game| %>
+                    <%= game.title %>
+                    <br>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
           <% time += 30*60 %>
           <% end %>

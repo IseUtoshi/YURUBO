@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   
   def show
     @date = params[:id]
+    @posts = Post.includes(:user)
   end
 
   def new
