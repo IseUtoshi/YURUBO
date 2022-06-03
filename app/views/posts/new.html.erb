@@ -1,4 +1,10 @@
 <%= render "shared/header" %>
+<% if flash[:notice] %>
+    <div class="flash_message_text">
+        <p><%= flash[:notice] %></p>
+        <br>
+    </div>
+<% end %>
 <div>
 <%= "この日は#{@date}" %>
 <div>

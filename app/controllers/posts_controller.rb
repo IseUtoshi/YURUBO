@@ -22,6 +22,7 @@ class PostsController < ApplicationController
       redirect_to root_path
     else
       @date = "#{params[:post]["start_time(1i)"]}-#{params[:post]["start_time(2i)"]}-#{params[:post]["start_time(3i)"]}"
+      flash[:notice] = "空のデータがあるか、時間指定が不正です"
       redirect_to new_post_path(date: @date)
     end
   end
