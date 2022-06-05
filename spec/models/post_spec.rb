@@ -11,23 +11,23 @@ RSpec.describe Post, type: :model do
         expect(@post).to be_valid
       end
     end
-    context '新規登録できない場合' do
-      it '開始時刻が空では登録できない' do
+    context '新規投稿できない場合' do
+      it '開始時刻が空では投稿できない' do
         @post.start_time = ''
         @post.valid?
         expect(@post.errors.full_messages).to include("Start time can't be blank")
       end
-      it '終了時刻が空では登録できない' do
+      it '終了時刻が空では投稿できない' do
         @post.end_time = ''
         @post.valid?
         expect(@post.errors.full_messages).to include("End time can't be blank")
       end
-      it 'チャット設定が空では登録できない' do
+      it 'チャット設定が空では投稿できない' do
         @post.chat_id = '1'
         @post.valid?
         expect(@post.errors.full_messages).to include("Chat can't be blank")
       end
-      it '公開設定が空では登録できない' do
+      it '公開設定が空では投稿できない' do
         @post.publish_id = '1'
         @post.valid?
         expect(@post.errors.full_messages).to include("Publish can't be blank")
