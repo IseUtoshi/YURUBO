@@ -1,0 +1,38 @@
+<%= render "shared/header" %>
+<% if flash[:notice] %>
+    <div class="flash_message_text">
+        <p><%= flash[:notice] %></p>
+        <br>
+    </div>
+<% end %>
+<div>
+<%= "この日は#{@date}" %>
+<div>
+<%= form_with model: @post, local: true do |f| %>
+<div>
+<%= f.collection_check_boxes :game_ids, @games, :id, :title, {include_hidden: false} %>
+</div>
+<div>
+<%= f.collection_select(:chat_id, Chat.all, :id, :name, {}, {class:"select-box", id:"post-chat"}) %>
+<%= f.collection_select(:publish_id, Publish.all, :id, :name, {}, {class:"select-box", id:"post-publish"}) %>
+</div>
+<br>
+
+<div>
+<%= f.label :start_time, class: 'control-label' %>
+<%= f.datetime_select :start_time, {default: Date.parse(@date), start_year: Date.parse(@date).year, end_year: Date.parse(@date).next_year.year, use_month_numbers: true, minute_step: 30}, class: 'form-control' %>
+</div>
+<br>
+ <div>
+<%= f.label :end_time, class: 'control-label' %>
+<%= f.datetime_select :end_time, {default: Date.parse(@date), start_year: Date.parse(@date).year, end_year: Date.parse(@date).next_year.year, use_month_numbers: true, minute_step: 30}, class: 'form-control' %>
+</div>
+<br>
+<div>※開始時刻は現在より未来</div>
+<div>※終了時刻は開始時刻の翌日11:30まで</div>
+<div>※プレイ時間帯が重複する投稿は受け付けません(マイページで前の投稿を削除できます)</div>
+<br>
+<%= f.submit "登録", class:"registration-btn" %>
+<br>
+<% end %>
+

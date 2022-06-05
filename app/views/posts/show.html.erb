@@ -1,0 +1,116 @@
+<%= render "shared/header" %>
+
+<% time = Time.parse(@date) %>
+
+<div class="timeTable">
+  <div class="col2of4">
+    <div class="tableBox">
+      <table>
+        <caption>■本日の午前</caption>
+        <tbody>
+        <% 24.times do %>
+          <tr>
+            <th class="just borderNone"><%= time.strftime("%H:%M") %></th>
+            <td>
+              <% @posts.each do |post| %>
+                <% if time.strftime("%Y-%m-%d %X UTC") == "#{post.start_time}" %>
+                  <%= link_to post.user.name, user_path(post.user.id) %>開始！
+                  <br>
+                  <% post.games.each do |game| %>
+                    <%= game.title %>
+                    <br>
+                  <% end %>
+                  <%= "(#{post.chat.name}可)" %>
+                  <br>
+                <% end %>
+              <% end %>
+              <% @posts.each do |post| %>
+                <% if time.strftime("%Y-%m-%d %X UTC") == "#{post.end_time}" %>
+                  <%= link_to post.user.name, user_path(post.user.id) %>終了
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <% time += 30*60 %>
+          <% end %>
+        </tbody>
+      </table>
+    <!-- /.tableBox --></div>
+  <!-- /.col2of4 --></div>
+
+  <div class="col2of4">
+    <div class="tableBox">
+      <table>
+        <caption>■本日の午後</caption>
+         <tbody>
+        <% 24.times do %>
+         <tr>
+            <th class="just borderNone"><%= time.strftime("%H:%M") %></th>
+            <td>
+              <% @posts.each do |post| %>
+                <% if time.strftime("%Y-%m-%d %X UTC") == "#{post.start_time}" %>
+                  <%= link_to post.user.name, user_path(post.user.id) %>開始！
+                  <br>
+                  <% post.games.each do |game| %>
+                    <%= game.title %>
+                    <br>
+                  <% end %>
+                  <%= "(#{post.chat.name}可)" %>
+                  <br>
+                <% end %>
+              <% end %>
+              <% @posts.each do |post| %>
+                <% if time.strftime("%Y-%m-%d %X UTC") == "#{post.end_time}" %>
+                  <%= link_to post.user.name, user_path(post.user.id) %>終了
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <% time += 30*60 %>
+          <% end %>
+        </tbody>
+      </table>
+    <!-- /.tableBox --></div>
+  <!-- /.col2of4 --></div>
+
+  <div class="col2of4">
+    <div class="tableBox">
+      <table>
+        <caption>■明日の午前</caption>
+        <tbody>
+        <% 24.times do %>
+         <tr>
+            <th class="just borderNone"><%= time.strftime("%H:%M") %></th>
+            <td>
+              <% @posts.each do |post| %>
+                <% if time.strftime("%Y-%m-%d %X UTC") == "#{post.start_time}" %>
+                  <%= link_to post.user.name, user_path(post.user.id) %>開始！
+                  <br>
+                  <% post.games.each do |game| %>
+                    <%= game.title %>
+                    <br>
+                  <% end %>
+                  <%= "(#{post.chat.name}可)" %>
+                  <br>
+                <% end %>
+              <% end %>
+              <% @posts.each do |post| %>
+                <% if time.strftime("%Y-%m-%d %X UTC") == "#{post.end_time}" %>
+                  <%= link_to post.user.name, user_path(post.user.id) %>終了
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <% time += 30*60 %>
+          <% end %>
+        </tbody>
+      </table>
+
+    <!-- /.tableBox --></div>
+  <!-- /.col2of4 --></div>
+  <% if user_signed_in? %>
+<div class="post-btn-contents">
+<%=link_to '予定を投稿', new_post_path(date: @date), class:"post-btn" %>
+</div>
+<% end %>
+<!-- /.timeTable --></div>
