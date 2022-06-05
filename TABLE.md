@@ -10,6 +10,7 @@
 ### Association
 
 - has_many :posts
+- has_many :games
 
 ## posts テーブル
 

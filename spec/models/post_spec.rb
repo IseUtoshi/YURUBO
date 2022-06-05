@@ -18,19 +18,19 @@ RSpec.describe Post, type: :model do
         expect(@post.errors.full_messages).to include("Start time can't be blank")
       end
       it '終了時刻が空では登録できない' do
-        @post.email = ''
+        @post.end_time = ''
         @post.valid?
         expect(@post.errors.full_messages).to include("End time can't be blank")
       end
       it 'チャット設定が空では登録できない' do
         @post.chat_id = '1'
         @post.valid?
-        expect(@post.errors.full_messages).to include("Chat id can't be blank")
+        expect(@post.errors.full_messages).to include("Chat can't be blank")
       end
       it '公開設定が空では登録できない' do
         @post.publish_id = '1'
         @post.valid?
-        expect(@post.errors.full_messages).to include("Publish id can't be blank")
+        expect(@post.errors.full_messages).to include("Publish can't be blank")
       end
       it 'ユーザーが紐付いていない' do
         @post.user = nil
