@@ -14,15 +14,15 @@ class Post < ApplicationRecord
   validate :time_overlap
 
   def time_mismatch
-    errors.add(:end_time, "終了時刻が開始時刻の前か同じです") if start_time.present? && end_time.present? && self.end_time <= self.start_time
-    errors.add(:start_time, "開始時刻が現在より前です") if start_time.present? && self.start_time < Time.now
+    errors.add(:base, "終了時刻が開始時刻の前か同じです") if start_time.present? && end_time.present? && self.end_time <= self.start_time
+    errors.add(:base, "開始時刻が現在より前です") if start_time.present? && self.start_time < Time.now
   end
 
   def time_limit
     if start_time.present? && end_time.present?
       t = Time.parse("#{self.start_time}")
       if self.end_time >= t.end_of_day.since(12.hours)
-        errors.add(:end_time, "終了時刻が指示範囲外です") 
+        errors.add(:base, "終了時刻が指示範囲外です") 
       end
     end
   end
@@ -30,7 +30,7 @@ class Post < ApplicationRecord
   def time_overlap
     if start_time.present? && end_time.present?
       if Post.where.not(start_time: self.start_time).where.not(end_time: self.end_time).where('end_time > ? and ? > start_time', self.start_time, self.end_time).where(user_id: self.user_id) != []
-        errors.add(:end_time, "期間が重複しています") 
+        errors.add(:base, "期間が重複しています") 
       end
     end
   end
