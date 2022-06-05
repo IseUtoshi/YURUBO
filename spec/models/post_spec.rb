@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   before do
-    @post = FactoryBot.build(:post)
+    @post = FactoryBot.create(:post)
   end
 
   describe '予定新規投稿' do

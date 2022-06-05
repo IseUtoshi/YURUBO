@@ -3,13 +3,6 @@ class Post < ApplicationRecord
   require 'time'
   require 'active_support/time'
 
-  belongs_to :user
-  has_many :post_games
-  has_many :games, through: :post_games
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :chat
-  belongs_to :publish
-
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :chat_id, numericality: { other_than: 1 , message: "can't be blank"} 
@@ -36,10 +29,17 @@ class Post < ApplicationRecord
 
   def time_overlap
     if start_time.present? && end_time.present?
-      if Post.where('end_time > ? and ? > start_time', self.start_time, self.end_time) != []
+      if Post.where.not(start_time: self.start_time).where.not(end_time: self.end_time).where('end_time > ? and ? > start_time', self.start_time, self.end_time).where(user_id: self.user_id) != []
         errors.add(:end_time, "期間が重複しています") 
       end
     end
   end
+
+  belongs_to :user
+  has_many :post_games
+  has_many :games, through: :post_games
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :chat
+  belongs_to :publish
 
 end
