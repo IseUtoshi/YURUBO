@@ -17,7 +17,6 @@ class Post < ApplicationRecord
   validate :time_limit
   validate :time_overlap
 
-
   def time_mismatch
     errors.add(:end_time, "終了時刻が開始時刻の前か同じです") if self.end_time <= self.start_time
     errors.add(:start_time, "開始時刻が現在より前です") if self.start_time < Time.now
