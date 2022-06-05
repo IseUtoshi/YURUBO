@@ -33,9 +33,9 @@ RSpec.describe Post, type: :model do
         expect(@post.errors.full_messages).to include("Publish id can't be blank")
       end
       it 'ユーザーが紐付いていない' do
-        @item.user = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include('User must exist')
+        @post.user = nil
+        @post.valid?
+        expect(@post.errors.full_messages).to include('User must exist')
       end
     end
   end

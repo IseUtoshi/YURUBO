@@ -60,3 +60,4 @@ gem "simple_calendar", "~> 2.4"
 gem 'pry-rails'
 gem 'devise'
 gem 'active_hash'
+gem "activesupport"

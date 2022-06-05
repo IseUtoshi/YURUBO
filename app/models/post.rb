@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
 
+  require 'active_support/time'
+
   belongs_to :user
   has_many :post_games
   has_many :games, through: :post_games
@@ -18,12 +20,12 @@ class Post < ApplicationRecord
   validate :time_overlap
 
   def time_mismatch
-    errors.add(:end_time, "終了時刻が開始時刻の前か同じです") if self.end_time <= self.start_time
+    errors.add(:end_time, "終了時刻が開始時刻の前か同じです") if self.end_time >= self.start_time
     errors.add(:start_time, "開始時刻が現在より前です") if self.start_time < Time.now
   end
 
   def time_limit
-    t = Time.parse(self.start_time)
+    t = Time.parse("#{self.start_time}")
     if self.end_time >= t.end_of_day.since(12.hours)
       errors.add(:end_time, "終了時刻が指示範囲外です") 
     end
