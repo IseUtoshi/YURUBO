@@ -28,6 +28,7 @@
 <%= f.datetime_select :end_time, {default: Date.parse(@date), start_year: Date.parse(@date).year, end_year: Date.parse(@date).next_year.year, use_month_numbers: true, minute_step: 30}, class: 'form-control' %>
 </div>
 <br>
+<div>※開始時刻は現在より未来</div>
 <div>※終了時刻は開始時刻の翌日11:30まで</div>
 <div>※プレイ時間帯が重複する投稿は受け付けません(マイページで前の投稿を削除できます)</div>
 <br>
