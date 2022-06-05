@@ -7,9 +7,12 @@
 <% end %>
 <div>
 <%= "この日は#{@date}" %>
-<div>
+</div>
 <%= form_with model: @post, local: true do |f| %>
 <div>
+<% unless Game.exists? %>
+先にマイページからゲームタイトルを登録してね！
+<% end %>
 <%= f.collection_check_boxes :game_ids, @games, :id, :title, {include_hidden: false} %>
 </div>
 <div>
