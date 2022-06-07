@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_06_07_053222) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["followee_id"], name: "index_follows_on_followee_id"
+    t.index ["follower_id", "followee_id"], name: "index_follows_on_follower_id_and_followee_id", unique: true
     t.index ["follower_id"], name: "index_follows_on_follower_id"
   end
 
