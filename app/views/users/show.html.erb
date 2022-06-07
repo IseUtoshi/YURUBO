@@ -9,6 +9,10 @@
   <%= f.submit "登録" ,class:"registration" %>
   <% end %>
 </div>
+<br>
+<div><%= link_to "フォロー一覧", follows_user_path(current_user.id) %></div>
+<br>
+<div><%= link_to "フォロワー一覧", followers_user_path(current_user.id) %></div>
 <% elsif user_signed_in? && @user != current_user %>
   <div>ユーザーネーム：<%= @user.name %></div>
   <br>

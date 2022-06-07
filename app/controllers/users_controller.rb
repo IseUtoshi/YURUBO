@@ -6,4 +6,14 @@ class UsersController < ApplicationController
     @game = Game.new
   end
 
+  def follows
+    user = User.find(current_user.id)
+    @users = user.follow_user
+  end
+
+  def followers
+    user = User.find(current_user.id)
+    @users = user.follower_user
+  end
+
 end
