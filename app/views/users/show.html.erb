@@ -10,10 +10,14 @@
   <% end %>
 </div>
 <% elsif user_signed_in? && @user != current_user %>
+  <div>ユーザーネーム：<%= @user.name %></div>
+  <br>
   <% if current_user.following?(@user) %>
     <div>フォローしています</div>
+    <br>
+    <div><%= link_to 'フォローを外す', user_follow_path(@user.id), method: :delete, class: "btn-sm btn-danger" %></div>
   <% else %>
-    <%= link_to 'フォローする', user_follows_path(@user.id), method: :POST, class:"btn-sm btn-success" %>
+    <div><%= link_to 'フォローする', user_follows_path(@user.id), method: :POST, class:"btn-sm btn-success" %></div>
   <% end %>
 <% end %>
 
