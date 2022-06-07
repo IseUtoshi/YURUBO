@@ -13,11 +13,11 @@ Basic認証
 ID:admin  
 Pass:14627  
 管理者(一般ユーザーに加え、デフォルト表示のゲームリストの追加ができます)
-
-
+mail:test@t.com
+pass:test4444
 一般ユーザー
-
-
+mail:try@t.com
+pass:try333
 
 ## 利用方法
 ・初めに新規登録またはログインを行ってください。  
