@@ -10,6 +10,22 @@ class User < ApplicationRecord
   has_many :games
   has_many :follower, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
   has_many :followee, class_name: "Follow", foreign_key: "followee_id", dependent: :destroy
-  has_many :followee_user, through: :follower, source: :followee
+  has_many :follow_user, through: :follower, source: :followee
   has_many :follower_user, through: :followee, source: :follower
+
+  # ユーザーをフォローする
+  def follow(user_id)
+    follower.create(followed_id: user_id)
+  end
+
+  # ユーザーのフォローを外す
+  def unfollow(user_id)
+    follower.find_by(followed_id: user_id).destroy
+  end
+
+  # フォローしていればtrueを返す
+  def following?(user)
+    follow_user.include?(user)
+  end
+
 end
