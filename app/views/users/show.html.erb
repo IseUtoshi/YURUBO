@@ -1,8 +1,20 @@
 <%= render "shared/header" %>
+<% if user_signed_in? && @user == current_user %>
 <div>ゲーム名を登録</div>
 <br>
-<%= form_with model: @game, local: true do |f| %>
-<%= render 'shared/error_messages', model: f.object %>
-<%= f.text_field :title, class:"title-input", id:"title", placeholder:"ゲーム名を入力" %>
-<%= f.submit "登録" ,class:"registration" %>
+<div>
+  <%= form_with model: @game, local: true do |f| %>
+  <%= render 'shared/error_messages', model: f.object %>
+  <%= f.text_field :title, class:"title-input", id:"title", placeholder:"ゲーム名を入力" %>
+  <%= f.submit "登録" ,class:"registration" %>
+  <% end %>
+</div>
+<% elsif user_signed_in? && @user != current_user %>
+  <% if current_user.following?(@user) %>
+    <div>フォローしています</div>
+  <% else %>
+    <%= link_to 'フォローする', user_follows_path(@user.id), method: :POST, class:"btn-sm btn-success" %>
+  <% end %>
 <% end %>
+
+
