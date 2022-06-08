@@ -28,5 +28,12 @@
     <div><%= link_to 'フォローする', user_follows_path(@user.id), method: :POST, class:"btn-sm btn-success" %></div>
   <% end %>
 <% end %>
-
+<br>
+<div>
+  <div>投稿一覧</div>
+  <% @posts.each do |post| %>
+  <br>
+    開始：<%= post.start_time %>　終了：<%= post.end_time %>　チャット：<%= post.chat.name %>　公開：<%= post.publish.name %>
+  <% end %>
+</div>
 

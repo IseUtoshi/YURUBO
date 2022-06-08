@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = Post.order("start_time ASC").where(user_id: current_user.id)
     @game = Game.new
   end
 
