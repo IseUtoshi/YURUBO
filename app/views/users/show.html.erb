@@ -10,6 +10,20 @@
   <% end %>
 </div>
 <br>
+<div>
+  <div>
+  投稿したゲーム名(ゲーム名を選択して削除)
+  </div>
+  <div>
+  <% @games.each do |game| %>
+    <% if game.user_id == current_user.id %>
+      <%= link_to game.title, game_path(game.id), method: :delete %>
+      <br>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+<br>
 <div><%= link_to "フォロー一覧", follows_user_path(current_user.id) %></div>
 <br>
 <div><%= link_to "フォロワー一覧", followers_user_path(current_user.id) %></div>

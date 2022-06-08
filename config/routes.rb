@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     resources :follows, only: [:create, :destroy]
   end
   resources :posts, except: :index
-  resources :games, only: :create
+  resources :games, only: [:create, :destroy]
 end

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = Post.order("start_time ASC").where(user_id: current_user.id)
     @game = Game.new
+    @games = Game.all
   end
 
   def follows
