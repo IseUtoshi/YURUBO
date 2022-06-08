@@ -6,8 +6,12 @@
   <div>
   <% posts.each do |post| %>
     <% if "#{post.start_time}".slice(/\d{4}-\d{2}-\d{2}/) == "#{date}" %>
-      <% if post.user == current_user || post.publish_id == 4 || (post.publish_id == 3 && current_user.followed?(post.user)) || (post.publish_id == 2 && current_user.following?(post.user) && current_user.followed?(post.user)) %>
-        <%= link_to post.user.name, user_path(post.user.id) %>
+      <% if user_signed_in? %>
+        <% if post.user == current_user || post.publish_id == 4 || (post.publish_id == 3 && current_user.followed?(post.user)) || (post.publish_id == 2 && current_user.following?(post.user) && current_user.followed?(post.user)) %>
+          <%= link_to post.user.name, user_path(post.user.id) %>
+        <% end %>
+      <% else %>
+        <%= link_to post.user.name, user_path(post.user.id) if post.publish_id == 4 %>
       <% end %>
     <% end %>
   <% end %>
