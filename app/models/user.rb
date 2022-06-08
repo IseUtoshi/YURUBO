@@ -28,4 +28,8 @@ class User < ApplicationRecord
     follow_user.include?(user)
   end
 
+  def followed?(user)
+    follower_user.include?(user)
+  end
+
 end

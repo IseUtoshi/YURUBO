@@ -1,5 +1,5 @@
 <%= render "shared/header" %>
 <div>フォロワー一覧</div>
 <% @users.each do |user| %>
-  <div><%= link_to user.name, user_path(user) %></div>
+  <div><%= link_to user.name, user_path(user) %><%= "　　相互" if current_user.following?(user) %></div>
 <% end %>
