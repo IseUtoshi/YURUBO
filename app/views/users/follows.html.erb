@@ -5,4 +5,8 @@
   <div><%= link_to user.name, user_path(user) %><%= "　　相互" if current_user.followed?(user) %>　　|<%= link_to 'フォロー解除', user_follow_path(user.id), method: :delete %>|</div>
 <% end %>
 <br>
-<div>ユーザーを検索(未実装)</div>
+<div>ユーザーを検索</div>
+<%= form_with(url: search_users_path, local: true, method: :get, class: "search-form") do |form| %>
+  <%= form.text_field :keyword, placeholder: "ユーザー名を入力", class: "search-input" %>
+  <%= form.submit "検索", class: "search-btn" %>
+<% end %>
