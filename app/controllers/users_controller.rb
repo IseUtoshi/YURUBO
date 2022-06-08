@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   end
 
   def search
-    @users = User.search(params[:keyword])
+    if params[:keyword] != ""
+      @users = User.search(params[:keyword])
+    else
+      @users = User.where.not(id: current_user.id)
+    end
   end
 
 end
