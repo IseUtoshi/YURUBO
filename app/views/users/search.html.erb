@@ -1,0 +1,15 @@
+<%= render "shared/header" %>
+<div>ユーザーを検索</div>
+<%= form_with(url: search_users_path, local: true, method: :get, class: "search-form") do |form| %>
+  <%= form.text_field :keyword, placeholder: "ユーザー名を入力", class: "search-input" %>
+  <%= form.submit "検索", class: "search-btn" %>
+<% end %>
+<div>※無記入の検索で自分以外の全てのユーザーが表示されます</div>
+<br>
+<div>
+  <% @users.each do |user| %>
+  <div>
+    <%= link_to user.name, user_path(user) %>　　<%= "フォロー" if current_user.following?(user) && !(current_user.followed?(user)) %><%= "フォロワー" if !(current_user.following?(user)) && current_user.followed?(user) %><%= "相互" if current_user.following?(user) && current_user.followed?(user) %>
+  </div>
+  <% end %>
+</div>

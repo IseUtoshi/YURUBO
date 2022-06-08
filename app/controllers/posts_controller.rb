@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @posts = Post.includes(:user)
+    @posts = Post.includes([:user, user: :follower, user: :followee])
   end
   
   def show

@@ -1,8 +1,32 @@
 <%= render "shared/header" %>
+<% if user_signed_in? && @user == current_user %>
 <div>ゲーム名を登録</div>
 <br>
-<%= form_with model: @game, local: true do |f| %>
-<%= render 'shared/error_messages', model: f.object %>
-<%= f.text_field :title, class:"title-input", id:"title", placeholder:"ゲーム名を入力" %>
-<%= f.submit "登録" ,class:"registration" %>
+<div>
+  <%= form_with model: @game, local: true do |f| %>
+  <%= render 'shared/error_messages', model: f.object %>
+  <%= f.text_field :title, class:"title-input", id:"title", placeholder:"ゲーム名を入力" %>
+  <%= f.submit "登録" ,class:"registration" %>
+  <% end %>
+</div>
+<br>
+<div><%= link_to "フォロー一覧", follows_user_path(current_user.id) %></div>
+<br>
+<div><%= link_to "フォロワー一覧", followers_user_path(current_user.id) %></div>
+<% elsif user_signed_in? && @user != current_user %>
+  <div>ユーザーネーム：<%= @user.name %></div>
+  <br>
+  <% if current_user.following?(@user) && current_user.followed?(@user)%>
+    <div>相互フォローしています！</div>
+    <br>
+    <div><%= link_to 'フォローを外す', user_follow_path(@user.id), method: :delete, class: "btn-sm btn-danger" %></div>
+  <% elsif current_user.following?(@user) %>
+    <div>フォローしています</div>
+    <br>
+    <div><%= link_to 'フォローを外す', user_follow_path(@user.id), method: :delete, class: "btn-sm btn-danger" %></div>
+  <% else %>
+    <div><%= link_to 'フォローする', user_follows_path(@user.id), method: :POST, class:"btn-sm btn-success" %></div>
+  <% end %>
 <% end %>
+
+

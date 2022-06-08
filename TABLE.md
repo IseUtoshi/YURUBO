@@ -3,7 +3,7 @@
 
 | Column              | Type   | Options                   |
 | ------------------- | ------ | ------------------------- |
-| nickname            | string | null: false               |
+| name                | string | null: false               |
 | email               | string | null: false, unique: true |
 | encrypted_password  | string | null: false               |
 
@@ -11,6 +11,10 @@
 
 - has_many :posts
 - has_many :games
+- has_many :follower, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
+- has_many :followee, class_name: "Follow", foreign_key: "followee_id", dependent: :destroy
+- has_many :followee_user, through: :follower, source: :followee
+- has_many :follower_user, through: :followee, source: :follower
 
 ## posts テーブル
 
@@ -30,10 +34,10 @@
 
 ## games テーブル
 
-| Column | Type       | Options                   |
-| ------ | ---------- | ------------------------- |
-| title  | string     | null: false               |
-| user   | references | null: false, unique: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| title  | string     | null: false                    |
+| user   | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -43,12 +47,25 @@
 
 ## post_games テーブル
 
-| Column | Type       | Options                   |
-| ------ | ---------- | ------------------------- |
-| post   | references | null: false, unique: true |
-| game   | references | null: false, unique: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| post   | references | null: false, foreign_key: true |
+| game   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :post
 - belongs_to :game
+
+## follows テーブル
+
+| Column   | Type       | Options                                      |
+| -------- | ---------- | -------------------------------------------- |
+| follower | references | null: false, foreign_key: {to_table: :users} |
+| followee | references | null: false, foreign_key: {to_table: :users} |
+
+### Association
+
+- belongs_to :follower, class_name: "User"
+- belongs_to :followee, class_name: "User"
+
