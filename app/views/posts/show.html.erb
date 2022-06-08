@@ -14,19 +14,23 @@
             <td>
               <% @posts.each do |post| %>
                 <% if time.strftime("%Y-%m-%d %X UTC") == "#{post.start_time}" %>
-                  <%= link_to post.user.name, user_path(post.user.id) %>開始！
-                  <br>
-                  <% post.games.each do |game| %>
-                    <%= game.title %>
+                  <% if post.user == current_user || post.publish_id == 4 || (post.publish_id == 3 && current_user.followed?(post.user)) || (post.publish_id == 2 && current_user.following?(post.user) && current_user.followed?(post.user)) %>
+                    <%= link_to post.user.name, user_path(post.user.id) %>開始！
+                    <br>
+                    <% post.games.each do |game| %>
+                      <%= game.title %>
+                      <br>
+                    <% end %>
+                    <%= "(#{post.chat.name}可)" %>
                     <br>
                   <% end %>
-                  <%= "(#{post.chat.name}可)" %>
-                  <br>
                 <% end %>
               <% end %>
               <% @posts.each do |post| %>
                 <% if time.strftime("%Y-%m-%d %X UTC") == "#{post.end_time}" %>
-                  <%= link_to post.user.name, user_path(post.user.id) %>終了
+                  <% if post.user == current_user || post.publish_id == 4 || (post.publish_id == 3 && current_user.followed?(post.user)) || (post.publish_id == 2 && current_user.following?(post.user) && current_user.followed?(post.user)) %>
+                    <%= link_to post.user.name, user_path(post.user.id) %>終了
+                  <% end %>
                 <% end %>
               <% end %>
             </td>
