@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, only: [:show, :follows, :followers, :search]
 
   def show
     @user = User.find(params[:id])
@@ -14,6 +14,10 @@ class UsersController < ApplicationController
   def followers
     user = User.find(current_user.id)
     @users = user.follower_user
+  end
+
+  def search
+    @users = User.search(params[:keyword])
   end
 
 end

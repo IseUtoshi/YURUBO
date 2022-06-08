@@ -28,8 +28,18 @@ class User < ApplicationRecord
     follow_user.include?(user)
   end
 
+  # フォローされていればtrueを返す
   def followed?(user)
     follower_user.include?(user)
+  end
+
+  # 検索メソッド
+  def self.search(search)
+    if search != ""
+      User.where('name LIKE(?)', "%#{search}%")
+    else
+      User.all
+    end
   end
 
 end
