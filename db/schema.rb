@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2022_06_07_053222) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["title", "user_id"], name: "index_games_on_title_and_user_id", unique: true
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
