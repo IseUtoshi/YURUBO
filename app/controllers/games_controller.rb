@@ -1,5 +1,9 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:index, :create, :destroy]
+
+  def index
+    redirect_to user_path(current_user.id)
+  end
 
   def create
     @game = Game.new(game_params)
