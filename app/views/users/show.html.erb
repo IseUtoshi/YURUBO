@@ -47,7 +47,7 @@
   <div>投稿一覧(過去の情報は自動削除されます)</div>
   <% @posts.each do |post| %>
   <br>
-    開始：<%= post.start_time.strftime('%Y/%m/%d %H:%M:%S') %>　終了：<%= post.end_time.strftime('%Y/%m/%d %H:%M:%S') %>　チャット：<%= post.chat.name %>　公開：<%= post.publish.name %>　<%= link_to '<削除>', post_path(post.id), method: :delete %>
+    開始：<%= post.start_time.strftime('%Y/%m/%d %H:%M:%S') %>　終了：<%= post.end_time.strftime('%Y/%m/%d %H:%M:%S') %>　チャット：<%= post.chat.name %>　公開：<%= post.publish.name %>　<%= link_to '<削除>', post_path(post.id), method: :delete if post.user_id == current_user.id%>
   <% end %>
 </div>
 
