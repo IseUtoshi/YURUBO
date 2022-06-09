@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit]
   before_action :auto_delete, only: [:index, :show]
 
   def index
@@ -36,6 +36,11 @@ class PostsController < ApplicationController
     else
       redirect_to root_path
     end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+    @games = Game.where(user_id: "1").or(Game.where(user_id: current_user.id))
   end
 
   private

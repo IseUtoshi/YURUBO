@@ -5,11 +5,7 @@
         <br>
     </div>
 <% end %>
-<div>新規投稿</div>
-<br>
-<div>
-<%= "この日は#{@date}" %>
-</div>
+<div>投稿編集</div>
 <br>
 <%= form_with model: @post, local: true do |f| %>
 <div>
@@ -26,12 +22,12 @@
 <br>
 <div>
 <%= f.label :start_time, class: 'control-label' %>
-<%= f.datetime_select :start_time, {default: Date.parse(@date), start_year: Date.parse(@date).year, end_year: Date.parse(@date).next_year.year, use_month_numbers: true, minute_step: 30}, class: 'form-control' %>
+<%= f.datetime_select :start_time, {start_year: Date.today.year, end_year: Date.today.next_year.year, use_month_numbers: true, minute_step: 30}, class: 'form-control' %>
 </div>
 <br>
  <div>
 <%= f.label :end_time, class: 'control-label' %>
-<%= f.datetime_select :end_time, {default: Date.parse(@date), start_year: Date.parse(@date).year, end_year: Date.parse(@date).next_year.year, use_month_numbers: true, minute_step: 30}, class: 'form-control' %>
+<%= f.datetime_select :end_time, {start_year: Date.today.year, end_year: Date.today.next_year.year, use_month_numbers: true, minute_step: 30}, class: 'form-control' %>
 </div>
 <br>
 <div>※開始時刻は現在より未来</div>
