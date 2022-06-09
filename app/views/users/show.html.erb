@@ -12,9 +12,16 @@
 <br>
 <div>
   <div>
-  投稿したゲーム名(ゲーム名を選択して削除)
+  投稿済みのゲーム名(自分が投稿したゲーム名を選択して削除)
   </div>
   <div>
+  <% @games.each do |game| %>
+    <% if game.user_id == 1 %>
+      <%= game.title %>
+      <br>
+    <% end %>
+  <% end %> 
+  <div>-----(以下自分の投稿)-----</div>
   <% @games.each do |game| %>
     <% if game.user_id == current_user.id %>
       <%= link_to game.title, game_path(game.id), method: :delete %>
