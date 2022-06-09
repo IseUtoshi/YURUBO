@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create, :destroy]
+  before_action :auto_delete, only: :index
 
   def index
     redirect_to user_path(current_user.id)
@@ -31,6 +32,13 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:title).merge(user_id: current_user.id)
+  end
+
+  def auto_delete
+    posts = Post.where("end_time < ?", Date.today)
+    posts.each do |post|
+      post.destroy
+    end
   end
   
 end

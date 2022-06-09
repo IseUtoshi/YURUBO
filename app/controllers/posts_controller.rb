@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :auto_delete, only: [:index, :show]
 
   def index
     @posts = Post.includes([:user, user: :follower, user: :followee])
@@ -41,6 +42,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:start_time, :end_time, :chat_id, :publish_id, game_ids: []).merge(user_id: current_user.id)
+  end
+
+  def auto_delete
+    posts = Post.where("end_time < ?", Date.today)
+    posts.each do |post|
+      post.destroy
+    end
   end
 
 end

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :follows, :followers, :search]
+  before_action :auto_delete, only: :show
 
   def show
     @user = User.find(params[:id])
@@ -26,4 +27,13 @@ class UsersController < ApplicationController
     end
   end
 
+  private
+
+  def auto_delete
+    posts = Post.where("end_time < ?", Date.today)
+    posts.each do |post|
+      post.destroy
+    end
+  end
+  
 end
