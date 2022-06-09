@@ -8,6 +8,7 @@
 <div>投稿編集</div>
 <br>
 <%= form_with model: @post, local: true do |f| %>
+<%= render 'shared/error_messages', model: f.object %>
 <div>
 <% unless Game.exists? %>
 先にマイページからゲームタイトルを登録してね！
