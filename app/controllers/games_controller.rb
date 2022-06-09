@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    if @game.save
+    if @game.save(context: :game_save)
       redirect_to request.referer
     else
       @user = User.find(current_user.id)
