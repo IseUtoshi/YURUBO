@@ -82,3 +82,7 @@
   a{
     text-decoration: underline;
   }
+
+  .guest{
+    text-decoration: none;
+  }
