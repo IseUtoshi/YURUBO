@@ -1,0 +1,41 @@
+
+
+.post__new__contents {
+  left: 40%;
+}
+
+.post__new__container {
+  text-align: center;
+  margin: 20px 0;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(41, 41, 41, 0.2);
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.post__new__line{
+  color: lightgray;
+}
+.select-box{
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.form-control{
+  border: 1px solid lightgray;
+  border-radius: 3px;
+}
+
+.post__new__attention{
+  margin-left: 100px;
+  text-align: start;
+}
+
+.registration-btn{
+  margin: 5px;
+  padding: 0 5px;
+  border: 1px solid blue;
+  border-radius: 5px;
+  background-color: #def7ff;
+}
