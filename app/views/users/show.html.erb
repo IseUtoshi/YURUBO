@@ -1,60 +1,74 @@
 <%= render "shared/header" %>
 <% if user_signed_in? && @user == current_user %>
-<div>ゲーム名を登録</div>
-<br>
-<div>
-  <%= form_with model: @game, local: true do |f| %>
-  <%= render 'shared/error_messages', model: f.object %>
-  <%= f.text_field :title, class:"title-input", id:"title", placeholder:"ゲーム名を入力" %>
-  <%= f.submit "登録" ,class:"registration" %>
-  <% end %>
+<div class="follows-box">
+  <div class="follows-btn"><%= link_to "フォローの一覧", follows_user_path(current_user.id) %></div>
+  <div class="follows-btn"><%= link_to "フォロワーの一覧", followers_user_path(current_user.id) %></div>
 </div>
-<br>
-<div>
-  <div>
-  投稿済みのゲーム名(自分が投稿したゲーム名を選択して削除)
-  </div>
-  <div>
-  <% @games.each do |game| %>
-    <% if game.user_id == 1 %>
-      <%= game.title %>
-      <br>
-    <% end %>
-  <% end %> 
-  <div>-----(以下自分の投稿)-----</div>
-  <% @games.each do |game| %>
-    <% if game.user_id == current_user.id %>
-      <%= link_to game.title, game_path(game.id), method: :delete %>
-      <br>
-    <% end %>
-  <% end %>
+<div class="user__show__contents">
+  <div class="user__show__container">
+    <div>＜ゲーム名登録フォーム＞</div>
+    <div>
+      <%= form_with model: @game, local: true do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
+      <%= f.text_field :title, class:"title-input", id:"title", placeholder:"ゲーム名を入力" %>
+      <%= f.submit "登録" ,class:"registration-btn" %>
+      <% end %>
+    </div>
   </div>
 </div>
 <br>
-<div><%= link_to "フォロー一覧", follows_user_path(current_user.id) %></div>
-<br>
-<div><%= link_to "フォロワー一覧", followers_user_path(current_user.id) %></div>
+<div class="user__show__contents">
+  <div class="user__show__container">
+    <div>
+    ＜投稿済みのゲーム名＞
+    </div>
+    <br>
+    <div>
+    <% @games.each do |game| %>
+      <% if game.user_id == 1 %>
+        <%= game.title %>
+        <br>
+      <% end %>
+    <% end %> 
+    <br>
+    <div>-----(以下の自分が投稿したゲーム名を選択して削除)-----</div>
+    <br>
+    <% @games.each do |game| %>
+      <% if game.user_id == current_user.id %>
+        <%= link_to game.title, game_path(game.id), method: :delete %>
+        <br>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
 <% elsif user_signed_in? && @user != current_user %>
-  <div>ユーザーネーム：<%= @user.name %></div>
-  <br>
-  <% if current_user.following?(@user) && current_user.followed?(@user)%>
-    <div>相互フォローしています！</div>
+<div class="user__show__contents">
+  <div class="user__show__container">
+    <div>ユーザーネーム：<%= @user.name %></div>
     <br>
-    <div><%= link_to 'フォローを外す', user_follow_path(@user.id), method: :delete, class: "btn-sm btn-danger" %></div>
-  <% elsif current_user.following?(@user) %>
-    <div>フォローしています</div>
-    <br>
-    <div><%= link_to 'フォローを外す', user_follow_path(@user.id), method: :delete, class: "btn-sm btn-danger" %></div>
-  <% else %>
-    <div><%= link_to 'フォローする', user_follows_path(@user.id), method: :POST, class:"btn-sm btn-success" %></div>
-  <% end %>
+    <% if current_user.following?(@user) && current_user.followed?(@user)%>
+      <div>相互フォローしています！</div>
+      <br>
+      <div><%= link_to 'フォローを外す', user_follow_path(@user.id), method: :delete, class: "btn-sm btn-danger" %></div>
+    <% elsif current_user.following?(@user) %>
+      <div>フォローしています</div>
+      <br>
+      <div><%= link_to 'フォローを外す', user_follow_path(@user.id), method: :delete, class: "btn-sm btn-danger" %></div>
+    <% else %>
+      <div><%= link_to 'フォローする', user_follows_path(@user.id), method: :POST, class:"btn-sm btn-success" %></div>
+    <% end %>
+  </div>
+</div>
 <% end %>
 <br>
-<div>
-  <div>投稿一覧(過去の情報は自動削除されます)</div>
-  <% @posts.each do |post| %>
-  <br>
-    開始：<%= post.start_time.strftime('%Y/%m/%d %H:%M:%S') %>　終了：<%= post.end_time.strftime('%Y/%m/%d %H:%M:%S') %>　チャット：<%= post.chat.name %>　公開：<%= post.publish.name %>　<%= link_to '<削除>', post_path(post.id), method: :delete if post.user_id == current_user.id %>　<%= link_to '<編集>', edit_post_path(post.id) if post.user_id == current_user.id %>
-  <% end %>
+<div class="user__show__contents">
+  <div class="user__show__container">
+    <div>投稿一覧(過去の情報は自動削除されます)</div>
+    <% @posts.each do |post| %>
+    <br>
+      開始：<%= post.start_time.strftime('%Y/%m/%d %H:%M:%S') %>　終了：<%= post.end_time.strftime('%Y/%m/%d %H:%M:%S') %>　チャット：<%= post.chat.name %>　公開：<%= post.publish.name %>　<%= link_to '<削除>', post_path(post.id), method: :delete if post.user_id == current_user.id %>　<%= link_to '<編集>', edit_post_path(post.id) if post.user_id == current_user.id %>
+    <% end %>
+  </div>
 </div>
 

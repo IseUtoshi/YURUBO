@@ -1,10 +1,8 @@
-
-
-.post__new__contents {
+.user__show__contents {
   left: 40%;
 }
 
-.post__new__container {
+.user__show__container {
   text-align: center;
   margin: 20px 0;
   padding: 30px;
@@ -14,23 +12,9 @@
   box-sizing: border-box;
 }
 
-.post__new__line{
-  color: lightgray;
-}
-
-.select-box{
+.title-input{
   border: 1px solid black;
   border-radius: 3px;
-}
-
-.form-control{
-  border: 1px solid lightgray;
-  border-radius: 3px;
-}
-
-.post__new__attention{
-  margin-left: 100px;
-  text-align: start;
 }
 
 .registration-btn{
@@ -39,4 +23,15 @@
   border: 1px solid blue;
   border-radius: 5px;
   background-color: #def7ff;
+}
+
+.follows-box{
+  display: flex;
+}
+
+.follows-btn{
+  margin: 5px 20px;
+  border: 1px solid orange;
+  border-radius: 5px;
+  background-color: #f4efe2;
 }
