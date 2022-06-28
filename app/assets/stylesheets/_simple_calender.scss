@@ -1,6 +1,14 @@
 .simple-calendar {
   .day {}
 
+  .calendar-heading{
+    text-align: center;
+  }
+
+  .wday{
+    text-align: center;
+  }
+
   .wday-0 {
     color: red;
   }
