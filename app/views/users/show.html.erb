@@ -1,8 +1,12 @@
 <%= render "shared/header" %>
 <% if user_signed_in? && @user == current_user %>
-<div class="follows-box">
-  <div class="follows-btn"><%= link_to "フォローの一覧", follows_user_path(current_user.id) %></div>
-  <div class="follows-btn"><%= link_to "フォロワーの一覧", followers_user_path(current_user.id) %></div>
+<div class="user__show__contents">
+  <div class="user__show__container">
+    <div class="follows-box">
+      <div class="follows-btn"><%= link_to "フォローの一覧", follows_user_path(current_user.id) %></div>
+      <div class="follows-btn"><%= link_to "フォロワーの一覧", followers_user_path(current_user.id) %></div>
+    </div>
+  </div>
 </div>
 <div class="user__show__contents">
   <div class="user__show__container">
