@@ -1,8 +1,8 @@
-.user__show__contents {
+.user__contents {
   left: 40%;
 }
 
-.user__show__container {
+.user__container {
   text-align: center;
   margin: 20px 0;
   padding: 30px;
@@ -12,12 +12,12 @@
   box-sizing: border-box;
 }
 
-.title-input{
+.search-input{
   border: 1px solid black;
   border-radius: 3px;
 }
 
-.registration-btn{
+.search-btn{
   margin: 5px;
   padding: 0 5px;
   border: 1px solid blue;
@@ -25,17 +25,6 @@
   background-color: #def7ff;
 }
 
-.follows-box{
-  display: flex;
-}
-
-.follows-btn{
-  margin: 5px 20px;
-  border: 1px solid orange;
-  border-radius: 5px;
-  background-color: #f4efe2;
-}
-
-.user__show__index{
-  font-size: 12px;
+.user__line{
+  color: lightgray;
 }
