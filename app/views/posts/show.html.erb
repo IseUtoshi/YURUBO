@@ -6,7 +6,7 @@
   <div class="col2of4">
     <div class="tableBox">
       <table>
-        <caption>■本日の午前</caption>
+        <caption>■<%= time.day %>日_AM</caption>
         <tbody>
         <% 24.times do %>
           <tr>
@@ -45,7 +45,7 @@
   <div class="col2of4">
     <div class="tableBox">
       <table>
-        <caption>■本日の午後</caption>
+        <caption>■<%= time.day %>日_PM</caption>
         <tbody>
         <% 24.times do %>
           <tr>
@@ -84,7 +84,7 @@
   <div class="col2of4">
     <div class="tableBox">
       <table>
-        <caption>■明日の午前</caption>
+        <caption>■<%= time.day %>日_AM</caption>
         <tbody>
         <% 24.times do %>
           <tr>
