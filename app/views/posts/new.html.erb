@@ -8,22 +8,25 @@
 <div class="post__new__contents">
   <div class="post__new__container">
     <div>＜新規投稿＞</div>
-    <div class="post__new__line">--------------------------------------------------------------------------------</div>
+    <div class="post__new__line">----------------------------------------------------------------------------------------------------</div>
     <%= form_with model: @post, local: true do |f| %>
     <div>
     <% unless Game.exists? %>
-    先にマイページからゲームタイトルを登録してね！
+    先に<%= link_to "マイページ", user_path(current_user) %>からゲームタイトルを登録してね！
     <% end %>
     <%= f.collection_check_boxes :game_ids, @games, :id, :title, {include_hidden: false} %>
     </div>
     <br>
-    <div>※ゲーム名のチェックは必須です</div>
-    <div class="post__new__line">--------------------------------------------------------------------------------</div>
+    <div class="post__new__attention">※ゲームタイトルの追加は<%= link_to "マイページ", user_path(current_user) %>から</div>
+    <div class="post__new__attention">※ゲームタイトルのチェックは必須です</div>
+    <div class="post__new__line">----------------------------------------------------------------------------------------------------</div>
     <div>
     チャットの可否　<%= f.collection_select(:chat_id, Chat.all, :id, :name, {}, {class:"select-box", id:"post-chat"}) %>　　
     公開設定　<%= f.collection_select(:publish_id, Publish.all, :id, :name, {}, {class:"select-box", id:"post-publish"}) %>　　
     </div>
-    <div class="post__new__line">--------------------------------------------------------------------------------</div>
+    <br>
+    <div class="post__new__attention">※選択必須です</div>
+    <div class="post__new__line">----------------------------------------------------------------------------------------------------</div>
     <div>
     <%= f.label :"開始時刻", class: 'control-label' %>
     <%= f.datetime_select :start_time, {default: Date.parse(@date), start_year: Date.parse(@date).year, end_year: Date.parse(@date).next_year.year, use_month_numbers: true, minute_step: 30}, class: 'form-control' %>
@@ -35,13 +38,12 @@
     <%= f.label :"終了時刻", class: 'control-label' %>
     <%= f.datetime_select :end_time, {default: Date.parse(@date), start_year: Date.parse(@date).year, end_year: Date.parse(@date).next_year.year, use_month_numbers: true, minute_step: 30}, class: 'form-control' %>
     </div>
-    <div class="post__new__line">--------------------------------------------------------------------------------</div>
+    <br>
     <div class="post__new__attention">※開始時刻は現在より未来</div>
     <div class="post__new__attention">※終了時刻は開始時刻の翌日11:30まで</div>
-    <div class="post__new__attention">※プレイ時間帯が重複する投稿は受け付けません(マイページで前の投稿を削除できます)</div>
-    <br>
+    <div class="post__new__attention">※プレイ時間帯が重複する投稿はできません(<%= link_to "マイページ", user_path(current_user) %>で前の投稿を削除できます)</div>
+    <div class="post__new__line">----------------------------------------------------------------------------------------------------</div>
     <%= f.submit "登録", class:"registration-btn" %>
-    <br>
     <% end %>
   </div>
 </div>

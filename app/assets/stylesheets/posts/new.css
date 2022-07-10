@@ -6,7 +6,7 @@
 
 .post__new__container {
   text-align: center;
-  margin: 20px 0;
+  margin: 10px 0;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(41, 41, 41, 0.2);
@@ -29,7 +29,7 @@
 }
 
 .post__new__attention{
-  margin-left: 100px;
+  margin-left: 150px;
   text-align: start;
 }
 
