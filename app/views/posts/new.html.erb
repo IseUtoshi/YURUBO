@@ -10,7 +10,7 @@
     <div>＜新規投稿＞</div>
     <div class="post__new__line">--------------------------------------------------------------------------------</div>
     <%= form_with model: @post, local: true do |f| %>
-    <div class="post__new__">
+    <div>
     <% unless Game.exists? %>
     先にマイページからゲームタイトルを登録してね！
     <% end %>
